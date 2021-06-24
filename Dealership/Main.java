@@ -17,20 +17,35 @@ public class Main {
         
         Dealership dealership = new Dealership(cars);
         System.out.println("\n ****** JAVA DEALERSHIP! ****** \n");
-        System.out.print("Welcome! Enter the type of car you're looking for: ");
-        String carModel = scan.nextLine();
-        System.out.print("Enter your budget: ");
-        int carBudget = scan.nextInt();
+        while (true) {
+            System.out.print("Welcome! Enter the type of car you're looking for: ");
+            if (scan.hasNextInt()) {
+                scan.nextLine();
+                System.out.println("INVALID INPUT");
+                continue;
+            }
+            String carModel = scan.nextLine();
+            System.out.print("Enter your budget: ");
+            if (!scan.hasNextInt()) {
+                scan.nextLine();
+                System.out.println("INVALID INPUT");
+                continue;
+            }
+            int carBudget = scan.nextInt();
+            if (dealership.search(carModel, carBudget) == 404) {
+                System.out.println("Feel free to browse through our collection of cars.\n");
+                System.out.println(dealership);
+            }
+            scan.nextLine();
+            String decison = scan.nextLine();
+            if (decison.equalsIgnoreCase("yes")) {
+                dealership.sell(dealership.search(carModel, carBudget));
+                break;
+            }
 
-        if (dealership.search(carModel, carBudget) == 404) {
-            System.out.println("Feel free to browse through our collection of cars.\n");
-            System.out.println(dealership);
         }
-        scan.nextLine();
-        String decison = scan.nextLine();
-        if (decison.equalsIgnoreCase("yes")) {
-            dealership.sell(dealership.search(carModel, carBudget));
-        }
+        
+        
 
         scan.close();
 
