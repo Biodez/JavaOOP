@@ -22,6 +22,9 @@ public class Dealership {
     }
 
     public void sell(int index) {
+        if (isEmpty()) {
+            throw new IllegalArgumentException("Dealership is empty, cannot call sell.");
+        }
         this.cars[index].drive();
         this.cars[index] = null;
     }
@@ -38,6 +41,13 @@ public class Dealership {
                 System.out.println("\nYour search didn't match any results.\n");
             }
         } return 404;
+    }
+    public boolean isEmpty() {
+        for (int i = 0; i < cars.length; i++) {
+            if (cars[i] != null) {
+                return false;
+            }
+        } return true;
     }
 
     public String toString() {

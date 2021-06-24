@@ -10,6 +10,12 @@ public class Car {
     private String[] parts;
 
     public Car(String make, double price, int year, String color, String[] parts) {
+        if (price < 0) {
+            throw new IllegalArgumentException("Price cannot be less than zero");
+        } 
+        if (this.make == null || this.make.isBlank()) {
+            throw new IllegalArgumentException("make cannot be null or blank");
+        }
         this.make = make;
         this.price = price;
         this.year = year;
@@ -45,10 +51,16 @@ public class Car {
     }
 
     public void setMake(String make) {
+        if (make == null || make.isBlank()) {
+            throw new IllegalArgumentException("Make cannot be null or blank");
+        }
         this.make = make;
     }
 
     public void setPrice(double price) {
+        if (price < 0) {
+            throw new IllegalArgumentException("Price cannot be less than zero");
+        }
         this.price = price;
     }
 
