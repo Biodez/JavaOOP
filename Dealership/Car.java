@@ -13,9 +13,10 @@ public class Car {
         if (price < 0) {
             throw new IllegalArgumentException("Price cannot be less than zero");
         } 
-        if (this.make == null || this.make.isBlank()) {
+        if (make == null || make.isBlank()) {
             throw new IllegalArgumentException("make cannot be null or blank");
         }
+
         this.make = make;
         this.price = price;
         this.year = year;
